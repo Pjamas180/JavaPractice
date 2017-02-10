@@ -38,7 +38,7 @@ public class MenuOfAppetizersSolution {
 		Set<String> items = menu.keySet();
 
 		// Converted into integers so it is easier to understand in calculations.
-		int priceAsInt = 1505;
+		int priceAsInt = 3510;
 		int[] menuItemsPrices = {580, 420, 355, 335, 275, 215};
 
 		System.out.println("~~NEW WAY~~");
@@ -48,15 +48,30 @@ public class MenuOfAppetizersSolution {
 			counts.add(0);
 		}
 		ArrayList<ArrayList<Integer>> listResult = new ArrayList<ArrayList<Integer>>();
+		final long startTime = System.currentTimeMillis();
 		getNumberOfEachItem(menuItemsPrices, counts, priceAsInt, listResult);
+		final long endTime = System.currentTimeMillis();
+		final long newTime = endTime - startTime;
+
 		printListResult(listResult, items);
+		System.out.println("Total Execution Time for New Way: " + newTime);
 
 		System.out.println("~~OLD WAY~~");
 
 		int[] counts1 = new int[menuItemsPrices.length];
 		ArrayList<ArrayList<Integer>> lists = new ArrayList<ArrayList<Integer>>();
+
+		final long oldStartTime = System.currentTimeMillis();
 		getNumberOfEachItem2(menuItemsPrices, counts1, 0, priceAsInt, lists);
+		final long oldEndTime = System.currentTimeMillis();
+		final long oldTime = oldEndTime - oldStartTime;
+
 		printListResult(lists, items);
+		System.out.println("Total Execution Time for Old Way: " + oldTime);
+
+		System.out.println("Change in execution speed: " + (newTime - oldTime));
+		double change = newTime/oldTime;
+		System.out.println("New time takes " + change + " time of old time.");
 
 	}
 
