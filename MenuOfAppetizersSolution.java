@@ -86,6 +86,13 @@ public class MenuOfAppetizersSolution {
 		}
 	}
 
+	/**
+	 * Algorithm utilizes recursive call-stacks to attain solution.
+	 *
+	 * Time complexity is O(n^n) time complexity since we are performing operations
+	 * for a certain combination multiple times. This means, we are resetting the pool
+	 * of possible items to choose from when we are testing for a new item.
+	 */
 	public static void getNumberOfEachItem(int[] menu, ArrayList<Integer> counts, int totalAmount, 
 		ArrayList<ArrayList<Integer>> listOfCounts) {
 
@@ -109,7 +116,11 @@ public class MenuOfAppetizersSolution {
 	/**
 	 * Algorithm does not utilize Dynamic Programming and Memoization as opposed to
 	 * getting the number of ways to reach a certain amount. This is so we can
-	 * attain the possible combinations until a certain amount
+	 * attain the possible combinations until a certain amount.
+	 *
+	 * This algorithm utilizes combinatorics to satisfy the price. It's like filling a
+	 * fixed volume bucket, given different size buckets to fill it with.
+	 * The algorithm performs in O(n^2) time.
 	 */
 	public static void getNumberOfEachItem2(int[] menu, int[] counts,
 		int startIndex, int totalAmount, ArrayList<ArrayList<Integer>> lists) {
@@ -123,12 +134,14 @@ public class MenuOfAppetizersSolution {
 			return;
 		}
 
+		// Last menu item, which has the smallest price.
 		if (startIndex == menu.length-1) {
 			if (totalAmount%menu[startIndex] == 0) {
 				counts[startIndex] = totalAmount/menu[startIndex];
 				getNumberOfEachItem2(menu, counts, startIndex + 1, 0, lists);
 			}
 		}
+
 		else {
 			for (int i = 0; i <= totalAmount/menu[startIndex]; i++) {
 				counts[startIndex] = i;

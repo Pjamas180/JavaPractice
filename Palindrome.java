@@ -14,6 +14,8 @@ public class Palindrome {
 		return copy.equals(copy1);
 	}
 
+	// This algorithm takes O(n^2) time because we are searching for a valid palindrome
+	// from each point in n until the string that is being validated is at most n.
 	public static String longestPalindrome(String input) {
 		int length = input.length();
 		boolean[][] table = new boolean[length][length];
